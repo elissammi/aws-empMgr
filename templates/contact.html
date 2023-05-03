@@ -20,9 +20,9 @@
 
     <!-- favicons
     ================================================== -->
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="static\images\apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="static\images\favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="static\images\favicon-16x16.png">
     <link rel="manifest" href="site.webmanifest">
 
 </head>
@@ -51,32 +51,25 @@
         ================================================== -->
         <header class="s-header">
             <div class="row s-header__inner width-sixteen-col">
-
                 <div class="s-header__block">
                     <div class="s-header__logo">
                         <a class="logo" href="index.html">
-                            <img src="../images/mluna-logo.png" alt="Homepage">
+                            <img src="static/images/mluna-logo.png" alt="Homepage">
                         </a>
                     </div>
-
-                    <a class="s-header__menu-toggle" href="#0"><span>Menu</span></a>
                 </div> <!-- end s-header__block -->
-
                 <nav class="s-header__nav">
-    
                     <ul class="s-header__menu-links">
-                        <li><a href="emp-mgr.html">Employees Manager</a></li>
-                        <li><a href="payroll.html">Payroll</a></li>
-                        <li><a href="attendance.html">Attendance Checker</a></li>
-                        <li><a href="leave.html">Leave Application</a></li>
+                        <li><a href="{{url_for('empMgr')}}">Employees Manager</a></li>
+                        <li><a href="{{url_for('payroll')}}">Payroll</a></li>
+                        <li><a href="{{url_for('attendance')}}">Attendance Checker</a></li>
+                        <li><a href="{{url_for('leave')}}">Leave Application</a></li>
                     </ul> <!-- s-header__menu-links -->
 
                     <div class="s-header__contact">
-                        <a href="contact.html" class="btn btn--primary s-header__contact-btn">The Managers</a>                        
-                    </div> <!-- s-header__contact -->
-    
+                        <a href="{{url_for('contact')}}" class="btn btn--primary s-header__contact-btn">The Managers</a>                        
+                    </div> <!-- s-header__contact -->    
                 </nav> <!-- end s-header__nav -->
-
             </div> <!-- end s-header__inner -->
         </header> <!-- end s-header -->
 
@@ -115,7 +108,7 @@
                     <div class="row pagemedia">
                         <d class="column xl-12">
                             <figure class="page-media">                                
-                                <img src="../images/thumbs/managers/manager-pic.jpg" width="100%">
+                                <img src="static/images/thumbs/managers/manager-pic.jpg" width="100%">
                             </figure>
                         </d>
                     </div> <!-- pagemedia --> 
@@ -132,7 +125,7 @@
                                         Not only that she is also a strategic thinker and has a keen eye for identifying new business opportunities.
                                     </p>
         
-                                    <a href="portfolio-sammi.html" class="btn btn--primary u-fullwidth contact-btn">
+                                    <a href="{{url_for('portfolioSammi')}}" class="btn btn--primary u-fullwidth contact-btn">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M20 4H4c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2zm0 2v.511l-8 6.223-8-6.222V6h16zM4 18V9.044l7.386 5.745a.994.994 0 0 0 1.228 0L20 9.044 20.002 18H4z"></path></svg>
                                         View her Portfolio
                                     </a>
@@ -144,7 +137,7 @@
                                         He is known to be a good problem-solver and has a knack for identifying the root cause of issues and finding effective solutions.
                                     </p>
             
-                                    <a href="portfolio-wl.html" class="btn btn--primary u-fullwidth contact-btn">
+                                    <a href="{{url_for('portfolioWl')}}" class="btn btn--primary u-fullwidth contact-btn">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M20 4H4c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2zm0 2v.511l-8 6.223-8-6.222V6h16zM4 18V9.044l7.386 5.745a.994.994 0 0 0 1.228 0L20 9.044 20.002 18H4z"></path></svg>
                                             View his Portfolio
                                     </a>
@@ -156,7 +149,7 @@
                                         He is always looking for ways to optimize the company's financial performance.
                                     </p>
             
-                                    <a href="portfolio-yz.html" class="btn btn--primary u-fullwidth contact-btn">
+                                    <a href="{{url_for('portfolioYz')}}" class="btn btn--primary u-fullwidth contact-btn">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M20 4H4c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2zm0 2v.511l-8 6.223-8-6.222V6h16zM4 18V9.044l7.386 5.745a.994.994 0 0 0 1.228 0L20 9.044 20.002 18H4z"></path></svg>
                                             View his Portfolio
                                     </a>
@@ -173,7 +166,7 @@
                                             </li>
                                             <li>
                                                 <a href="https://www.linkedin.com/in/sammi-chia-li-elis-b145831a2/">
-                                                    <img src="..\images\icons\linkedin-logo.png" alt="linkedin-logo" style="width: 24; height: 24;">
+                                                    <img src="static\images\icons\linkedin-logo.png" alt="linkedin-logo" style="width: 24; height: 24;">
                                                     <span class="u-screen-reader-text">LinkedIn</span>
                                                 </a>
                                             </li>
@@ -210,7 +203,7 @@
                                             </li>
                                             <li>
                                                 <a href="https://www.linkedin.com/in/teng-wai-leong-b77870271/">
-                                                    <img src="..\images\icons\linkedin-logo.png" alt="linkedin-logo" style="width: 24; height: 24;">
+                                                    <img src="static\images\icons\linkedin-logo.png" alt="linkedin-logo" style="width: 24; height: 24;">
                                                     <span class="u-screen-reader-text">LinkedIn</span>
                                                 </a>
                                             </li>
@@ -247,7 +240,7 @@
                                             </li>
                                             <li>
                                                 <a href="https://www.linkedin.com/in/yin-ze-ng-295091271/">
-                                                    <img src="..\images\icons\linkedin-logo.png" alt="linkedin-logo" style="width: 24; height: 24;">
+                                                    <img src="static\images\icons\linkedin-logo.png" alt="linkedin-logo" style="width: 24; height: 24;">
                                                     <span class="u-screen-reader-text">LinkedIn</span>
                                                 </a>
                                             </li>
@@ -306,7 +299,7 @@
                                             Her ability to build relationships and keep clients happy is second to none."
                                         </p>
                                         <div class="testimonials__author">
-                                            <img src="../images/avatars/user-01.jpg" alt="Author image" class="testimonials__avatar">
+                                            <img src="static/images/avatars/user-01.jpg" alt="Author image" class="testimonials__avatar">
                                             <cite class="testimonials__cite">
                                                 <strong>John Rockefeller</strong>
                                                 <span>Standard Oil Co.</span>
@@ -320,7 +313,7 @@
                                             His attention to detail and problem-solving skills are unmatched."
                                         </p>
                                         <div class="testimonials__author">
-                                            <img src="../images/avatars/user-04.jpg" alt="Author image" class="testimonials__avatar">
+                                            <img src="static/images/avatars/user-04.jpg" alt="Author image" class="testimonials__avatar">
                                             <cite class="testimonials__cite">
                                                 <strong>Andrew Carnegie</strong>
                                                 <span>Carnegie Steel Co.</span>
@@ -334,7 +327,7 @@
                                             He is a true strategic thinker who always has the best interests of our company in mind."
                                         </p>
                                         <div class="testimonials__author">
-                                            <img src="../images/avatars/user-06.jpg" alt="Author image" class="testimonials__avatar">
+                                            <img src="static/images/avatars/user-06.jpg" alt="Author image" class="testimonials__avatar">
                                             <cite class="testimonials__cite">
                                                 <strong>Henry Ford</strong>
                                                 <span>Ford Motor Co.</span>
@@ -348,7 +341,7 @@
                                             We are grateful to have them as our partners."
                                         </p>
                                         <div class="testimonials__author">
-                                            <img src="../images/avatars/user-02.jpg" alt="Author image" class="testimonials__avatar">
+                                            <img src="static/images/avatars/user-02.jpg" alt="Author image" class="testimonials__avatar">
                                             <cite class="testimonials__cite">
                                                 <strong>John Morgan</strong>
                                                 <span>JP Morgan & Co.</span>
@@ -385,24 +378,15 @@
                 <div class="column xl-3 lg-6 md-12 s-footer__block s-footer__site-links">
                     <h3>Site Links</h3>
                     <ul class="link-list">
-                        <li><a href="index.html">Employee Manager</a></li>
-                        <li><a href="payroll.html">Payroll</a></li>
-                        <li><a href="attendance.html">Attendance Checker</a></li>
-                        <li><a href="leave.html">Leave Application</a></li>
-                        <li><a href="contact.html">The Managers</a></li>
+                        <li><a href="{{url_for('empMgr')}}">Employees Manager</a></li>
+                        <li><a href="{{url_for('payroll')}}">Payroll</a></li>
+                        <li><a href="{{url_for('attendance')}}">Attendance Checker</a></li>
+                        <li><a href="{{url_for('leave')}}">Leave Application</a></li>
                     </ul>
                 </div>
                 <div class="column xl-3 lg-6 md-12 tab-12 s-footer__block s-footer__newsletter">
-                    <h3>Facing an issue with M Luna EmpManager?</h3>
-                    <p> Drop us your email and we will get back to you soon!</p>
-                    <div class="subscribe-form">
-                        <form id="mc-form" class="mc-form">
-                            <input type="email" name="EMAIL" id="mce-EMAIL" class="u-fullwidth text-center" placeholder="Your Email Address" title="The domain portion of the email address is invalid (the portion after the @)." pattern="^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*(\.\w{2,})+$" required>
-                            <input type="submit" name="reach-us" value="Reach Us" class="btn btn--primary btn--small u-fullwidth">
-                            <!-- <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_cdb7b577e41181934ed6a6a44_9a91cfe7b3" tabindex="-1" value=""></div> -->
-                            <div class="mc-status"></div>
-                        </form>
-                    </div>
+                    <h3>Get to know our Managers</h3>
+                    <a href="{{url_for('contact')}}"><button class="btn btn--primary btn--small u-fullwidth">The Managers</button></a>
                 </div>
             </div>    
             
