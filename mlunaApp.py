@@ -128,7 +128,7 @@ def updateEmpProcess():
     pay_scale = request.form['pay_scale']
     hire_date = request.form['hire_date']
 
-    update_sql = "UPDATE employee SET Name=%s, Gender=%s, DOB= %s, Address=%s, Email=%s, Phone Number=%s, Job Title=%s, Pay Scale=%s, Hire Date=%s WHERE Employee_ID=%s,"
+    update_sql = "UPDATE employee SET Name=%s, Gender=%s, DOB= %s, Address=%s, Email=%s, Phone Number=%s, Job_Title=%s, Pay_Scale=%d, Hire_Date=%s WHERE Employee_ID=%s,"
     cursor = db_conn.cursor()
 
     cursor.execute(update_sql, (emp_name, gender, dob, address, email, phone_num, job_title, pay_scale, hire_date, emp_id))
@@ -173,7 +173,7 @@ def payslipProcess():
     cursor = db_conn.cursor()
     insert_sql = "INSERT INTO payroll (Employee_ID, Salary, Month, Date) VALUES (%s, %s, %s, %s)"
 
-    cursor.execute(insert_sql, (emp_id, month, salary, date))
+    cursor.execute(insert_sql, (emp_id, salary, month, date))
     db_conn.commit()
     cursor.close()
 
@@ -191,7 +191,7 @@ def markAttProcess():
     status = request.form['status']
 
     cursor = db_conn.cursor()
-    update_sql = "UPDATE attendance Status=%s, Time_Stamp=SYSDATE() WHERE Employee_ID=%s"
+    update_sql = "UPDATE attendance SET Status=%s, Time_Stamp=SYSDATE() WHERE Employee_ID=%s"
 
     cursor.execute(update_sql, (emp_id, status))
     db_conn.commit()
@@ -214,7 +214,7 @@ def leaveAppProcess():
     mc = request.files['mc_evidence']
 
     cursor = db_conn.cursor()
-    insert_sql = "INSERT INTO leave VALUES (%s, %s, %s, %s)"
+    insert_sql = "INSERT INTO leave_application VALUES (%s, %s, %s, %s)"
 
     
     if mc.filename == "":
