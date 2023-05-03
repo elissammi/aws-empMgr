@@ -6,7 +6,7 @@
     ================================================== -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Payroll - M Luna EmpManager</title>
+    <title>Employess - M Luna EmpManager</title>
 
     <script>
         document.documentElement.classList.remove('no-js');
@@ -80,48 +80,24 @@
                     <div class="row">
                         <div class="column xl-12">
                             <h1 class="page-title">
-                                <span class="page-title__small-type text-pretitle">Payroll</span>
-                                M Luna Pay
+                                <span class="page-title__small-type text-pretitle">Management</span>
+                                M Luna Employees
                             </h1>
                         </div>
                     </div>
                </section> <!-- pageheader -->  
-               <section class="s-pagecontent pagecontent">
-                    <div class="row">
-                        <div class="column xl-12 grid-block">             
-                            
-                            <div class="grid-full grid-list-items list-items show-ctr">
-                                <div class="grid-list-items__item list-items__item">
-                                        <h3 class="list-items__item-title"><a class="btn btn--stroke u-fullwidth" href="{{url_for('payslip')}}">Pay an Employee</a></h3>
-                                </div> <!-- end list-items__item -->                                
-                            </div> <!-- grid-list-items -->
-                        </div> <!-- end grid-block-->
-                    </div> <!-- end row -->
-                    <div class="row row-x-center text-center">
-                        <div class="table-responsive" style="margin: 50;">
-                            <h2 style="text-align: left;">Payroll History</h2>
-                            <table>
-                                    <thead>
-                                    <tr>
-                                        <th>Payroll ID</th>
-                                        <th>Employee ID</th>
-                                        <th>Salary</th>
-                                        <th>Date</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                        {% for row in rows %}
-                                        <tr>
-                                          <td>{{ row[0] }}</td>
-                                          <td>{{ row[1] }}</td>
-                                          <td>{{ row[2] }}</td>
-                                          <td>{{ row[3] }}</td>                                    
-                                        </tr>
-                                        {% endfor %}
-                                    </tbody>
-                            </table>
-                        </div>
-                    </div>                    
+               <section class="s-pagecontent pagecontent" style="margin-left: 20%; margin-right: 20%;">
+                <h3 class="u-add-bottom">Update Employee</h3>
+                <form action="/searchEmpProcess" method = "POST" enctype="multipart/form-data">
+                    <div>
+                        <label for="employee_id">Employee ID</label>
+                        <input class="u-fullwidth" type="text" id="employee_id" name="employee_id">
+                    </div>
+                    <div>
+                        <input class="btn btn--primary u-fullwidth" type="submit" value="Search for Employee">
+                    </div>
+                    
+                </form>
                </section> <!-- pagecontent -->
 
          <!-- # footer 

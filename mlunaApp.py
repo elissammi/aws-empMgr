@@ -87,7 +87,7 @@ def leave():
 def addEmp():
     return render_template('addEmp.html')
 
-@app.route("/addEmpProcess", methods=['POST'])
+@app.route("/addEmpProcess", methods=['GET', 'POST'])
 def addEmpProcess():
     emp_id = request.form['employee_id']
     emp_name = request.form['name']
@@ -114,34 +114,20 @@ def addEmpProcess():
 
     return render_template('emp-mgr.html', rows=rows)
 
-@app.route("/updateEmp", methods=['GET', 'POST'])
-def updateEmp():
-    return render_template('updateEmp.html')
+@app.route("/searchEmp", methods=['GET', 'POST'])
+def searchEmp():
+    return render_template('searchEmp.html')
 
-@app.route("/updateEmpProcess", methods=['POST'])
-def updateEmpProcess():
+@app.route("/searchEmpProcess", methods=['GET', 'POST'])
+def searchEmpProcess():
     emp_id = request.form['employee_id']
-    emp_name = request.form['name']
-    gender = request.form['gender']
-    dob = request.form['dob']
-    address = request.form['address']
-    email = request.form['email']
-    phone_num = request.form['phone']
-    job_title = request.form['job_title']
-    pay_scale = request.form['pay_scale']
-    hire_date = request.form['hire_date']
 
-    update_sql = "UPDATE employee SET Name=%s, Gender=%s, DOB= %s, Address=%s, Email=%s, Phone Number=%s, Job_Title=%s, Pay_Scale=%s, Hire_Date=%s WHERE Employee_ID=%s,"
+    search_sql = "SELECT * FROM employee WHERE Employee_ID=%s"
     cursor = db_conn.cursor()
 
-    cursor.execute(update_sql, (emp_name, gender, dob, address, email, phone_num, job_title, pay_scale, hire_date, emp_id))
-    db_conn.commit()
-    cursor.close()   
-    
-    cursor = db_conn.cursor()
-    cursor.execute('SELECT * FROM employee')
+    cursor.execute(search_sql, (emp_id))
     rows = cursor.fetchall()
-    cursor.close()
+    cursor.close()  
 
     return render_template('emp-mgr.html', rows=rows)
 
@@ -149,7 +135,7 @@ def updateEmpProcess():
 def removeEmp():
     return render_template('removeEmp.html')
 
-@app.route("/removeEmpProcess", methods=['POST'])
+@app.route("/removeEmpProcess", methods=['GET', 'POST'])
 def removeEmpProcess():
     emp_id = request.form['employee_id']
 
@@ -174,17 +160,16 @@ def payslip():
 
     return render_template('payEmp.html')
 
-@app.route("/payslipProcess")
+@app.route("/payslipProcess", methods=['GET', 'POST'])
 def payslipProcess():
     emp_id = request.form['employee_id']
     salary = request.form['salary']
-    month = request.form['month']
     date = request.form['date']
 
     cursor = db_conn.cursor()
-    insert_sql = "INSERT INTO payroll (Employee_ID, Salary, Month, Date) VALUES (%s, %s, %s, %s)"
+    insert_sql = "INSERT INTO payroll (Employee_ID, Salary, Date) VALUES (%s, %s, %s)"
 
-    cursor.execute(insert_sql, (emp_id, salary, month, date))
+    cursor.execute(insert_sql, (emp_id, salary, date))
     db_conn.commit()
     cursor.close()
 
@@ -202,15 +187,16 @@ def markAtt():
 
     return render_template('markAtt.html')
 
-@app.route("/markAttProcess")
+@app.route("/markAttProcess", methods=['GET', 'POST'])
 def markAttProcess():
     emp_id = request.form['employee_id']
     status = request.form['status']
 
     cursor = db_conn.cursor()
-    update_sql = "UPDATE attendance SET Status=%s, Time_Stamp=SYSDATE() WHERE Employee_ID=%s"
+    #update_sql = "UPDATE attendance SET Status=%s, Time_Stamp=SYSDATE() WHERE Employee_ID=%s"
+    insert_sql = "INSERT INTO attendance VALUES (%s,SYSDATE(), %s)"
 
-    cursor.execute(update_sql, (emp_id, status))
+    cursor.execute(insert_sql, (emp_id, status))
     db_conn.commit()
     cursor.close()
 
@@ -228,16 +214,17 @@ def leaveApp():
 
     return render_template('leaveApp.html')
 
-@app.route("/leaveAppProcess")
+@app.route("/leaveAppProcess", methods=['GET', 'POST'])
 def leaveAppProcess():
     emp_id = request.form['employee_id']
     date = request.form['leave_date']
     reason = request.form['reason']
     days = request.form['days']
+
     mc = request.files['mc_evidence']
 
     cursor = db_conn.cursor()
-    insert_sql = "INSERT INTO leave_application VALUES (%s, %s, %s, %s)"
+    insert_sql = "INSERT INTO leave_application (Employee_ID, Submission_Date, Reason_of_Leave, Total_Day) VALUES (%s, %s, %s, %s)"
 
     
     if mc.filename == "":
