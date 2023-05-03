@@ -131,7 +131,7 @@ def updateEmpProcess():
     pay_scale = request.form['pay_scale']
     hire_date = request.form['hire_date']
 
-    update_sql = "UPDATE employee SET Name=%s, Gender=%s, DOB= %s, Address=%s, Email=%s, Phone Number=%s, Job_Title=%s, Pay_Scale=%d, Hire_Date=%s WHERE Employee_ID=%s,"
+    update_sql = "UPDATE employee SET Name=%s, Gender=%s, DOB= %s, Address=%s, Email=%s, Phone Number=%s, Job_Title=%s, Pay_Scale=%s, Hire_Date=%s WHERE Employee_ID=%s,"
     cursor = db_conn.cursor()
 
     cursor.execute(update_sql, (emp_name, gender, dob, address, email, phone_num, job_title, pay_scale, hire_date, emp_id))
