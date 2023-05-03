@@ -107,9 +107,12 @@ def addEmpProcess():
     db_conn.commit()
     cursor.close()
 
-    print("Employee ID" + emp_id + "has been successfully added into the database.")
+    cursor = db_conn.cursor()
+    cursor.execute('SELECT * FROM employee')
+    rows = cursor.fetchall()
+    cursor.close()
 
-    return render_template('emp-mgr.html')
+    return render_template('emp-mgr.html', rows=rows)
 
 @app.route("/updateEmp", methods=['GET', 'POST'])
 def updateEmp():
@@ -134,9 +137,13 @@ def updateEmpProcess():
     cursor.execute(update_sql, (emp_name, gender, dob, address, email, phone_num, job_title, pay_scale, hire_date, emp_id))
     db_conn.commit()
     cursor.close()   
+    
+    cursor = db_conn.cursor()
+    cursor.execute('SELECT * FROM employee')
+    rows = cursor.fetchall()
+    cursor.close()
 
-    print("Employee ID" + emp_id + "has been successfully updated in the database.")
-    return render_template('emp-mgr.html')
+    return render_template('emp-mgr.html', rows=rows)
 
 @app.route("/removeEmp", methods=['GET', 'POST'])
 def removeEmp():
@@ -153,9 +160,13 @@ def removeEmpProcess():
     db_conn.commit()
     cursor.close()
 
-    print("Employee ID" + emp_id + "has been successfully removed from the database.")
+    cursor = db_conn.cursor()
+    cursor.execute('SELECT * FROM employee')
+    rows = cursor.fetchall()
+    cursor.close()
 
-    return render_template('emp-mgr.html')
+    return render_template('emp-mgr.html', rows=rows)
+    
 
 #Payroll Manager
 @app.route("/payslip")
@@ -177,7 +188,13 @@ def payslipProcess():
     db_conn.commit()
     cursor.close()
 
-    return render_template('payroll.html')
+    cursor = db_conn.cursor()
+
+    cursor.execute('SELECT * FROM payroll')
+    rows = cursor.fetchall()
+    cursor.close()
+
+    return render_template('payroll.html', rows=rows)
 
 #Attendance Checker
 @app.route("/markAtt")
@@ -197,7 +214,13 @@ def markAttProcess():
     db_conn.commit()
     cursor.close()
 
-    return render_template('attendance.html')
+    cursor = db_conn.cursor()
+
+    cursor.execute('SELECT * FROM attendance')
+    rows = cursor.fetchall()
+    cursor.close()
+
+    return render_template('attendance.html', rows=rows)
 
 #Leave Application
 @app.route("/leaveApp")
@@ -250,7 +273,13 @@ def leaveAppProcess():
     finally:
         cursor.close()
 
-    return render_template('leave.html')
+    cursor = db_conn.cursor()
+
+    cursor.execute('SELECT * FROM leave_application')
+    rows = cursor.fetchall()
+    cursor.close()
+
+    return render_template('leave.html', rows=rows)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
