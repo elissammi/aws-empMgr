@@ -83,8 +83,12 @@ def leave():
 #database routes
 
 #EMP Manager
-@app.route("/addEmp", methods=['POST'])
+@app.route("/addEmp", methods=['GET', 'POST'])
 def addEmp():
+    return render_template('addEmp.html')
+
+@app.route("/addEmpProcess", methods=['POST'])
+def addEmpProcess():
     emp_id = request.form['employee_id']
     emp_name = request.form['name']
     gender = request.form['gender']
@@ -104,10 +108,15 @@ def addEmp():
     cursor.close()
 
     print("Employee ID" + emp_id + "has been successfully added into the database.")
-    return render_template('addEmp.html')
 
-@app.route("/updateEmp", methods=['POST'])
+    return render_template('emp-mgr.html')
+
+@app.route("/updateEmp", methods=['GET', 'POST'])
 def updateEmp():
+    return render_template('updateEmp.html')
+
+@app.route("/updateEmpProcess", methods=['POST'])
+def updateEmpProcess():
     emp_id = request.form['employee_id']
     emp_name = request.form['name']
     gender = request.form['gender']
@@ -127,10 +136,15 @@ def updateEmp():
     cursor.close()   
 
     print("Employee ID" + emp_id + "has been successfully updated in the database.")
-    return render_template('updateEmp.html')
+    return render_template('emp-mgr.html')
 
-@app.route("/removeEmp")
+@app.route("/removeEmp", methods=['GET', 'POST'])
 def removeEmp():
+    return render_template('removeEmp.html')
+
+
+@app.route("/removeEmpProcess")
+def removeEmpProcess():
     emp_id = request.form['employee_id']
 
     remove_sql = "DELETE FROM employee WHERE Employee_ID = %s"
@@ -141,7 +155,7 @@ def removeEmp():
     cursor.close()   
 
     print("Employee ID" + emp_id + "has been successfully removed from the database.")
-    return render_template('removeEmp.html')
+    return render_template('emp-mgr.html')
 
 #Payroll Manager
 @app.route("/payslip")
