@@ -19,7 +19,7 @@ db_conn = connections.Connection(
 #routes
 
 @app.route("/")
-def home():
+def index():
     return render_template('index.html')
 
 @app.route("/contact")
