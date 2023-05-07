@@ -42,6 +42,7 @@ def portfolioYz():
 
 @app.route("/empMgr", methods=['GET'])
 def empMgr():
+    db_conn.ping(reconnect=True)
     cursor = db_conn.cursor()
 
     cursor.execute('SELECT * FROM employee')
@@ -52,6 +53,7 @@ def empMgr():
 
 @app.route("/payroll", methods=['GET'])
 def payroll():
+    db_conn.ping(reconnect=True)
     cursor = db_conn.cursor()
 
     cursor.execute('SELECT * FROM payroll')
@@ -62,6 +64,7 @@ def payroll():
 
 @app.route("/attendance", methods=['GET'])
 def attendance():
+    db_conn.ping(reconnect=True)
     cursor = db_conn.cursor()
 
     cursor.execute('SELECT * FROM attendance')
@@ -72,6 +75,7 @@ def attendance():
 
 @app.route("/leave", methods=['GET'])
 def leave():
+    db_conn.ping(reconnect=True)
     cursor = db_conn.cursor()
 
     cursor.execute('SELECT * FROM leave_application')
@@ -101,6 +105,7 @@ def addEmpProcess():
     hire_date = request.form['hire_date']
 
     insert_sql = "INSERT INTO employee VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    db_conn.ping(reconnect=True)
     cursor = db_conn.cursor()
 
     cursor.execute(insert_sql, (emp_id, emp_name, gender, dob, address, email, phone_num, job_title, pay_scale, hire_date))
@@ -123,6 +128,7 @@ def searchEmpProcess():
     emp_id = request.form['employee_id']
 
     search_sql = "SELECT * FROM employee WHERE Employee_ID=%s"
+    db_conn.ping(reconnect=True)
     cursor = db_conn.cursor()
 
     cursor.execute(search_sql, (emp_id))
@@ -140,6 +146,7 @@ def removeEmpProcess():
     emp_id = request.form['employee_id']
 
     remove_sql = "DELETE FROM employee WHERE Employee_ID = %s"
+    db_conn.ping(reconnect=True)
     cursor = db_conn.cursor()
 
     cursor.execute(remove_sql, emp_id)
@@ -166,13 +173,14 @@ def payslipProcess():
     salary = request.form['salary']
     date = request.form['date']
 
+    
     cursor = db_conn.cursor()
     insert_sql = "INSERT INTO payroll (Employee_ID, Salary, Date) VALUES (%s, %s, %s)"
 
     cursor.execute(insert_sql, (emp_id, salary, date))
     db_conn.commit()
     cursor.close()
-
+    db_conn.ping(reconnect=True)
     cursor = db_conn.cursor()
 
     cursor.execute('SELECT * FROM payroll')
@@ -191,7 +199,8 @@ def markAtt():
 def markAttProcess():
     emp_id = request.form['employee_id']
     status = request.form['status']
-
+    
+    db_conn.ping(reconnect=True)
     cursor = db_conn.cursor()
     #update_sql = "UPDATE attendance SET Status=%s, Time_Stamp=SYSDATE() WHERE Employee_ID=%s"
     insert_sql = "INSERT INTO attendance VALUES (%s,SYSDATE(), %s)"
@@ -222,7 +231,7 @@ def leaveAppProcess():
     days = request.form['days']
 
     mc = request.files['mc_evidence']
-
+    db_conn.ping(reconnect=True)
     cursor = db_conn.cursor()
     insert_sql = "INSERT INTO leave_application (Employee_ID, Submission_Date, Reason_of_Leave, Total_Day) VALUES (%s, %s, %s, %s)"
 
@@ -231,7 +240,7 @@ def leaveAppProcess():
         return "Please select a file"
 
     try:
-
+        
         cursor.execute(insert_sql, (emp_id, date, reason, days))
         db_conn.commit()
         # Uplaod image file in S3 #
